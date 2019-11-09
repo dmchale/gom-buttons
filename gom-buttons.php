@@ -3,7 +3,7 @@
  * Plugin Name: GoM Button Click Tracker
  * Plugin URI: http://www.gameonmarathon.com/
  * Description: Tracks the clicks of any anchor link on the website with the "track-me" class on it
- * Version: 1.1
+ * Version: 1.2
  * Author: Dave McHale
  * Author URI: http://www.binarytemplar.com
  * Text Domain: gom-buttons
@@ -39,9 +39,11 @@ function gom_js_footer() {
 	?>
 	<script>
         jQuery( document ).ready(function() {
-	        jQuery('.track-me a, track-me button, a.track-me, button.track-me').click( function() {
+	        jQuery('.track-me a, track-me button, a.track-me, button.track-me').click( function(e) {
+	            e.preventDefault();
+                jQuery(this).fadeOut( 500 ).delay( 5000 ).fadeIn( 1000 );
 	            jQuery.post('/wp-json/gom/v1/clicks-post/', { href : jQuery(this).attr('href') } );
-	        });
+            });
         });
 	</script>
 	<?php

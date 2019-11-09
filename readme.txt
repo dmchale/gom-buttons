@@ -3,7 +3,7 @@ Contributors: dmchale
 Tags: GoM, Game On Marathon
 Requires at least: 4.6
 Tested up to: 5.3
-Stable tag: 1.1
+Stable tag: 1.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -34,6 +34,10 @@ Probably not.
 
 == Changelog ==
 
+= 1.2 =
+* Added delayed removal of button from the page
+* Links now have a preventDefault() to keep them from actually going anywhere
+
 = 1.1 =
 * Added Plugin Update Checker
 
@@ -41,6 +45,10 @@ Probably not.
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.2 =
+* Added delayed removal of button from the page
+* Links now have a preventDefault() to keep them from actually going anywhere
 
 = 1.1 =
 * Added Plugin Update Checker
