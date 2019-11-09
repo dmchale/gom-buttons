@@ -3,7 +3,7 @@
  * Plugin Name: GoM Button Click Tracker
  * Plugin URI: http://www.gameonmarathon.com/
  * Description: Tracks the clicks of any anchor link on the website with the "track-me" class on it
- * Version: 1.0
+ * Version: 1.1
  * Author: Dave McHale
  * Author URI: http://www.binarytemplar.com
  * Text Domain: gom-buttons
@@ -18,6 +18,18 @@ if ( ! defined( 'WPINC' ) ) {
 
 // Make sure jquery is enqueued
 wp_enqueue_script( 'jquery' );
+
+// Plugin Update Checker
+require 'plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://github.com/dmchale/gom-buttons/',
+	__FILE__,
+	'gom-buttons'
+);
+
+// Use the "release" method of checking for releases, so we don't get updates from the `master` branch
+$myUpdateChecker->getVcsApi()->enableReleaseAssets();
+
 
 /**
  * The click handler will fire off an AJAX post to add tracking for the href that was clicked
