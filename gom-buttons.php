@@ -3,7 +3,7 @@
  * Plugin Name: GoM Button Click Tracker
  * Plugin URI: http://www.gameonmarathon.com/
  * Description: Tracks the clicks of any anchor link on the website with the "track-me" class on it
- * Version: 1.2
+ * Version: 1.3
  * Author: Dave McHale
  * Author URI: http://www.binarytemplar.com
  * Text Domain: gom-buttons
@@ -42,7 +42,7 @@ function gom_js_footer() {
 	        jQuery('.track-me a, track-me button, a.track-me, button.track-me').click( function(e) {
 	            e.preventDefault();
                 jQuery(this).fadeOut( 500 ).delay( 5000 ).fadeIn( 1000 );
-	            jQuery.post('/wp-json/gom/v1/clicks-post/', { href : jQuery(this).attr('href') } );
+	            jQuery.post('https://www.binarytemplar.com/wp-json/gom/v1/clicks-post/', { href : jQuery(this).attr('href') } );
             });
         });
 	</script>
@@ -60,7 +60,7 @@ add_action( 'wp_footer', 'gom_js_footer' );
  */
 function gom_rest_get( WP_REST_Request $request ) {
 
-    $str = get_option( 'gom_clicks' );
+    $str = get_option( 'gom_clicks_13' );
     return $str;
 
 }
@@ -78,8 +78,8 @@ function gom_rest_post( WP_REST_Request $request ) {
         return;
 
     // Get or make array for data
-	if ( get_option( 'gom_clicks' ) )
-		$gom_clicks = json_decode( get_option( 'gom_clicks' ), true );
+	if ( get_option( 'gom_clicks_13' ) )
+		$gom_clicks = get_option( 'gom_clicks_13' );
 	else
 		$gom_clicks = array();
 
@@ -94,7 +94,7 @@ function gom_rest_post( WP_REST_Request $request ) {
     }
 
     // Save new array of data to database
-	update_option( 'gom_clicks', json_encode( $gom_clicks ) );
+	update_option( 'gom_clicks_13', $gom_clicks );
 
 }
 
